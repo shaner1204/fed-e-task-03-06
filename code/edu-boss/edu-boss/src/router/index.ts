@@ -57,6 +57,27 @@ const routes: Array<RouteConfig> = [
         path: '/advert-space',
         name: 'advert-space',
         component: () => import(/* webpackChunkName: 'advert-space' */ '@/views/advert-space/index.vue')
+      },
+      {
+        path: '/menu/create',
+        name: 'menu-create',
+        component: () => import(/* webpackChunkName: 'menu-create' */ '@/views/menu/create.vue')
+      },
+      {
+        path: '/menu/update',
+        name: 'menu-update',
+        component: () => import(/* webpackChunkName: 'menu-create' */ '@/views/menu/update.vue')
+      },
+      {
+        path: '/resource/resourceTypeList',
+        name: 'resource-type-list',
+        component: () => import(/* webpackChunkName: 'resource-type-list' */ '@/views/resource/components/ResourceType/ResourceTypeList.vue')
+      },
+      {
+        path: 'role/:roleId/alloc-menu',
+        name: 'alloc-role',
+        component: () => import(/* webpackChunkName: 'menu-create' */ '@/views/role/alloc-role.vue'),
+        props: true // 将路由路径参数映射到组件的 props 数据中
       }
     ]
   },
