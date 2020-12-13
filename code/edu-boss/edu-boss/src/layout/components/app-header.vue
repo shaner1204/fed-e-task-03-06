@@ -2,9 +2,9 @@
     <div class="header">
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-            <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-            <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+            <el-breadcrumb-item
+            v-for="(item, index) in breads"
+            :key="index">{{item.name}}</el-breadcrumb-item>
         </el-breadcrumb>
         <el-dropdown>
             <span class="el-dropdown-link">
@@ -35,6 +35,11 @@ export default Vue.extend({
       userInfo: {}
     }
   },
+  computed: {
+    breads () {
+      return this.$store.state.breadCrumbs
+    }
+  },
   created () {
     this.getUserInfo()
   },
@@ -44,7 +49,7 @@ export default Vue.extend({
       this.userInfo = data.content
     },
     handleLogout () {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      this.$confirm('确认要退出吗？, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'

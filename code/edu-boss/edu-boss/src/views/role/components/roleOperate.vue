@@ -46,6 +46,11 @@ export default Vue.extend({
   created () {
     if (this.isUpdate) {
       this.loadEditRoleInfo()
+    } else {
+      this.form.name = ''
+      this.form.description = ''
+      this.form.code = ''
+      this.form.id = ''
     }
   },
   methods: {

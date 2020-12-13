@@ -54,9 +54,19 @@ const routes: Array<RouteConfig> = [
         component: () => import(/* webpackChunkName: 'advert' */ '@/views/advert/index.vue')
       },
       {
+        path: '/advert/advertOperate',
+        name: 'advertOperate',
+        component: () => import(/* webpackChunkName: 'advertOperate' */ '@/views/advert/advertOperate.vue')
+      },
+      {
         path: '/advert-space',
         name: 'advert-space',
         component: () => import(/* webpackChunkName: 'advert-space' */ '@/views/advert-space/index.vue')
+      },
+      {
+        path: '/advert-space/create',
+        name: 'advert-space-create',
+        component: () => import(/* webpackChunkName: 'advert-space-create' */ '@/views/advert-space/createOrEdit.vue')
       },
       {
         path: '/menu/create',
@@ -78,6 +88,23 @@ const routes: Array<RouteConfig> = [
         name: 'alloc-role',
         component: () => import(/* webpackChunkName: 'menu-create' */ '@/views/role/alloc-role.vue'),
         props: true // 将路由路径参数映射到组件的 props 数据中
+      },
+      {
+        path: 'course/create',
+        name: 'course-create',
+        component: () => import(/* webpackChunkName: 'course-create' */ '@/views/course/components/createOrEdit.vue')
+      },
+      {
+        path: 'course/:courseId/:courseName/course-section',
+        name: 'course-section',
+        component: () => import(/* webpackChunkName: 'course-section' */ '@/views/course/components/CourseSection.vue'),
+        props: true
+      },
+      {
+        path: 'course/:courseId/course-video',
+        name: 'course-video',
+        component: () => import(/* webpackChunkName: 'course-video' */ '@/views/course/components/CourseVideo.vue'),
+        props: true
       }
     ]
   },

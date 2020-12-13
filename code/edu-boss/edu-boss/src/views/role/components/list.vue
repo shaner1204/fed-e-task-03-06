@@ -118,9 +118,11 @@ export default Vue.extend({
       this.loadRoleList()
     },
     dialogEmitFn () {
+      this.isUpdate = false
       this.$emit('dialogVisibleEmit')
     },
     addResourceEmitFn () {
+      this.isUpdate = false
       this.loadRoleList()
     },
     // 编辑角色

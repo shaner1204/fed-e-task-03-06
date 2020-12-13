@@ -25,7 +25,7 @@
         </el-form>
       </el-col>
       <el-col :span="6">
-        <el-button type="primary" :disabled="isloading">添加课程</el-button>
+        <el-button type="primary" :disabled="isloading" @click="$router.push({name: 'course-create'})">添加课程</el-button>
       </el-col>
     </el-row>
     <el-table
@@ -63,11 +63,19 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              :type="scope.row.status === 0 ? 'success' : 'danger'" @click="courseStatus(scope.row)">{{scope.row.status === 0 ? '上架' : '下架'}}</el-button>
+              :type="scope.row.status === 0 ? 'success' : 'danger'"
+              @click="courseStatus(scope.row)">{{scope.row.status === 0 ? '上架' : '下架'}}</el-button>
             <el-button
-              size="mini">编辑</el-button>
+              size="mini"
+              @click="$router.push({name: 'course-create', params: {
+                id: scope.row.id
+              }})">编辑</el-button>
             <el-button
-              size="mini">内容管理</el-button>
+              size="mini"
+              @click="$router.push({name: 'course-section', params: {
+                courseId: scope.row.id,
+                courseName: scope.row.courseName
+              }})">内容管理</el-button>
           </template>
         </el-table-column>
     </el-table>
@@ -86,7 +94,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { getQueryCourses } from '@/services/course'
+import { getQueryCourses, changeState } from '@/services/course'
 export default Vue.extend({
   name: 'CourseIndex',
   data () {
@@ -117,8 +125,16 @@ export default Vue.extend({
         this.form.total = data.data.total
       }
     },
-    courseStatus () {
-      console.log('课程状态')
+    async courseStatus (item: any) {
+      const obj = {
+        courseId: item.id,
+        status: item.status === 0 ? 1 : 0
+      }
+      // const { data } = await changeState(item.id, item.status === 0 ? 1 : 0)
+      const { data } = await changeState(obj)
+      if (data.code === '000000') {
+        this.loadQueryCourse()
+      }
     },
     handleSizeChange (val: number) {
       console.log(val)

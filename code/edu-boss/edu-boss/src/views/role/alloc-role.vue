@@ -4,12 +4,11 @@
     node-key="id"
     :data="menus"
     :props="defaultProps"
-    :default-checked-keys="[20]"
+    :default-checked-keys="checkedKeys"
     show-checkbox
     default-expand-all
     ref='alloc-menu'></el-tree>
     <div class="btns">
-      {{checkedKeys}}
         <el-button>清空</el-button>
         <el-button type="primary" @click="saveMenu">保存</el-button>
     </div>
