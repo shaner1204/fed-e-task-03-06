@@ -76,13 +76,13 @@ export default Vue.extend({
   computed: {
     breadcrumbList () {
       const breadcrumbs = [] as any
-      let menuLists = this.menus
+      const menuLists = this.menus
       this.indexBreadcrumbs.map(item => {
         for (let i = 0; i < menuLists.length; i++) {
           if (item === menuLists[i].path) {
             breadcrumbs.push(menuLists[i])
             if (menuLists[i].child) {
-              menuLists = menuLists[i].child
+              ;(menuLists as any) = menuLists[i].child
             }
             break
           }
